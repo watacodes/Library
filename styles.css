@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0; 
+}
+
+h1,
+.description {
+    text-align: center;
+}
+
+.title {
+    font-size: 36px;
+}
+
+.description {
+    font-size: 24px;
+}
+.title,
+.description {
+    margin: 20px 20px;
+}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
+    font-size: 24px;
+    border: 2px solid black;
+}
