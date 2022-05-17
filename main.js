@@ -29,6 +29,9 @@ function addMyBookToLibrary(title) {
     myPersonalLibrary.push(title);
 };
 
+// Making a function to display books in the webpage, loop through the array,
+// get the titles, making divs to store them, appended those divs to the parent div #container
+
 function displayBooks() {
     myPersonalLibrary.forEach(book => {
         const newCard = document.createElement('div');
@@ -40,3 +43,7 @@ function displayBooks() {
 };
 
 displayBooks();
+
+// To-dos
+// 1. Add a new book button
+// 2. Let user add more info about their favorite books e.g.) The name of author, rating, etc..
