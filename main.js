@@ -33,7 +33,7 @@ function displayBooks() {
     myPersonalLibrary.forEach(book => {
         const newCard = document.createElement('div');
         newCard.className = 'card-body';
-        newCard.innerText = book; // Not sure if this is working.
+        newCard.innerText = book;
         container.append(newCard);
         console.log(newCard);
     });
