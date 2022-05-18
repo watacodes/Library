@@ -12,14 +12,14 @@ function Book(title, author, genre, rating) {
     
 };
 
-let newbook = new addMyBookToLibrary("Harry Potter", "J.K. Rowlings", "Fiction", "5");
-let newbook2 = new addMyBookToLibrary("Atomic Habits", "James Clear", "Non-Fiction", );
-let newbook3 = new addMyBookToLibrary("Grit", "Angela Duckworth", "Non-Fiction", "5");
-let newbook4 = new addMyBookToLibrary("The Alchemist", "Paulo Coelho", "Fiction", "5");
-let newbook5 = new addMyBookToLibrary("Homo Deus", "Yuval Noah Harari", "Non-Fiction", "5");
-let newbook6 = new addMyBookToLibrary("1Q84", "Haruki Murakami", "Fiction", "5");
-let newbook7 = new addMyBookToLibrary("Man's Search for Meaning", "Viktor Frankl", "Non-Fiction", "5");
-let newbook8 = new addMyBookToLibrary("Moonwalking with Einstein", "Joshua Foer", "Non-Fiction", "5");
+const newBook1 = new addMyBookToLibrary("Harry Potter", "J.K. Rowlings", "Fiction", "5");
+const newbook2 = new addMyBookToLibrary("Atomic Habits", "James Clear", "Non-Fiction", );
+const newbook3 = new addMyBookToLibrary("Grit", "Angela Duckworth", "Non-Fiction", "5");
+const newbook4 = new addMyBookToLibrary("The Alchemist", "Paulo Coelho", "Fiction", "5");
+const newbook5 = new addMyBookToLibrary("Homo Deus", "Yuval Noah Harari", "Non-Fiction", "5");
+const newbook6 = new addMyBookToLibrary("1Q84", "Haruki Murakami", "Fiction", "5");
+const newbook7 = new addMyBookToLibrary("Man's Search for Meaning", "Viktor Frankl", "Non-Fiction", "5");
+const newbook8 = new addMyBookToLibrary("Moonwalking with Einstein", "Joshua Foer", "Non-Fiction", "5");
 const container = document.getElementById('container');
 
 // Making a function to add a new book to the library(array)
