@@ -21,27 +21,12 @@ const newBook7 = new addMyBookToLibrary("Man's Search for Meaning", "Viktor Fran
 const newBook8 = new addMyBookToLibrary("Moonwalking with Einstein", "Joshua Foer", "Non-Fiction", "5");
 const container = document.getElementById('container');
 
-// Making a function to add a new book to the library(array)
-
 function addMyBookToLibrary(title, author, genre, rating) {
     const book = new Book(title, author, genre, rating);
     myPersonalLibrary.push(book);
 };
 
-// Created an addEventListener to retrieve the user input from the input form and create
-// a new object.
-
-
-// <Issue>
-
-// Succeeded in creating a new object when I add preventDefault, however, it doesn't work
-// without adding the the preventDefault.
-
-// I just want to create an object that doesn't disappear. Need further researching.
-
-
-
-const submitButton = document.getElementById('submit-btn')
+const submitButton = document.getElementById('submit-btn');
 
 submitButton.addEventListener('click', e => {
     e.preventDefault();
@@ -50,23 +35,27 @@ submitButton.addEventListener('click', e => {
     const userGenre = document.getElementById('genre').value;
     const userRating = document.getElementById('rating').value;
 
-    new addMyBookToLibrary(userTitle, userAuthor, userGenre, userRating);
-    // myPersonalLibrary.push(userTitle, userAuthor, userGenre, userRating);
+    // Block if title/author/rating info is blank.
 
-    console.log(`This is mylib : ${myPersonalLibrary}`);
+    if (!(userTitle == "" || userAuthor == "" || userRating == "")) {
+        new addMyBookToLibrary(userTitle, userAuthor, userGenre, userRating);
+        console.log(`This is mylib : ${JSON.stringify(myPersonalLibrary)}`);
+        displayBooksAddedByUser();
+    }
 });
 
 
 
-
 // Making a function to display books in the webpage, loop through the array,
-// get the titles, making divs to store them, appended those divs to the parent div #container
+// get the book info, making divs to store them, appended those divs to the parent div #container
 
 function displayBooks() {
     myPersonalLibrary.forEach((book) => {
+        
+        localStorage.setItem('Book', JSON.stringify(myPersonalLibrary));
+        
         const newCard = document.createElement('div');
         newCard.className = 'card-body';
-        console.log(newCard)
 
         const content = `
             <div class="card-body">
@@ -78,15 +67,36 @@ function displayBooks() {
         `
 
         container.innerHTML += content;
-        console.log(newCard);
     });
 };
 
 displayBooks();
 
-// const userTitle = document.getElementById('title').value;
-// const userAuthor = document.getElementById('author').value;
-// const userGenre = document.getElementById('genre').value;
-// const userRating = document.getElementById('rating').value;
+// Newly added function that adds new book data based on user input
+
+// Issue
+
+// Can't store the info in the localStorage, created divs will be disappears
+// once I reload the page.
+
+function displayBooksAddedByUser() {
+    const lastItem = myPersonalLibrary[myPersonalLibrary.length - 1];
+    localStorage.setItem('Book', JSON.stringify(myPersonalLibrary));
+    console.log(myPersonalLibrary);
+    const createNewCard = document.createElement('div');
+    createNewCard.className = 'card-body';
+
+    const newCardBody = `
+        <div class="card-body">
+            <span>Title: ${lastItem.title}</p>
+            <span>Author: ${lastItem.author}</p>
+            <span>Genre: ${lastItem.genre}</p>
+            <span>Rating: ${lastItem.rating}</p>
+        </div>
+    `
+
+    container.innerHTML += newCardBody;
+}
+
 
 
