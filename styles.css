@@ -76,3 +76,20 @@ h1,
     font-size: 16px;
     border: 2px solid black;
 }
+
+/* Temporarily adding styles */
+
+fieldset {
+    width: 500px;
+    height: 210px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+    padding: 15px;
+}
+
+input {
+    width: 300px;
+}
+
