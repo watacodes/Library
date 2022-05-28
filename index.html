@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Testing Library</title>
+    <title>Library</title>
     <script src="main.js" defer></script>
 </head>
 <body>
@@ -37,6 +37,11 @@
                     <div class="book-rating">
                         <label for="rating">Rating*: </label>
                         <input type="number" name="rating" max="5" min="1" id="rating" class="user-book-rating">
+                    </div>
+
+                    <div class="book-status">
+                        <label for="status">Have you finished reading this book?*: </label>
+                        <input type="checkbox" name="status" id="status" class="user-book-status" required>
                     </div>
 
                 <button class="book-submit-button" type="submit" id="submit-btn">Submit</button>   
