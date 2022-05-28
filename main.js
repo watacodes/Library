@@ -93,29 +93,4 @@ function getLocalStorage() {
 getLocalStorage()
 
 
-// Newly added function that adds new book data based on user input
-
-// Issue
-
-// Can't store the info in the localStorage, created divs will be disappears
-// once I reload the page.
-
-// function displayBooksAddedByUser() {
-//     const lastItem = myPersonalLibrary[myPersonalLibrary.length - 1];
-//     const createNewCard = document.createElement('div');
-//     createNewCard.className = 'card-body';
-
-//     const newCardBody = `
-//         <div class="card-body">
-//             <span>Title: ${lastItem.title}</p>
-//             <span>Author: ${lastItem.author}</p>
-//             <span>Genre: ${lastItem.genre}</p>
-//             <span>Rating: ${lastItem.rating}</p>
-//         </div>
-//     `
-
-//     container.innerHTML += newCardBody;
-// }
-
-
 
