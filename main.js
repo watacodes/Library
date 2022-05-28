@@ -17,18 +17,17 @@ const container = document.getElementById('container');
 
 // Making a constructor 
 
-function Book(title, author, genre, rating, status) {
+function Book(title, author, genre, rating) {
     this.title = title;
     this.author = author;
     this.genre = genre;
     this.rating = rating;
-    this.status = false;
 };
 
 function addMyBookToLibrary(title, author, genre, rating) {
     const book = new Book(title, author, genre, rating);
     myPersonalLibrary.push(book);
-    localStorage.setItem('Book', JSON.stringify(myPersonalLibrary));
+    localStorage.setItem('Books', JSON.stringify(myPersonalLibrary));
     displayBooks();
     document.querySelector('form').reset();
 };
@@ -70,16 +69,28 @@ function displayBooks() {
 
         const content = `
             <div class="card-body">
-                <span>Title: ${book.title}</p>
-                <span>Author: ${book.author}</p>
-                <span>Genre: ${book.genre}</p>
-                <span>Rating: ${book.rating}</p>
+                <p>Title: <br> ${book.title}</p>
+                <p>Author: <br> ${book.author}</p>
+                <p>Genre: <br> ${book.genre}</p>
+                <p>Rating: <br> ${book.rating}</p>
             </div>
         `
 
         container.innerHTML += content;
     });
 };
+
+// New fucntion that checks whether myPersonalLibrary matches the localStorage.
+// If not, then updates the original array with localStorage data.
+
+function getLocalStorage() {
+    if (myPersonalLibrary != localStorage.getItem('Books')) {
+        myPersonalLibrary = JSON.parse(localStorage.getItem('Books'));
+        displayBooks()
+    }
+}
+
+getLocalStorage()
 
 
 // Newly added function that adds new book data based on user input
