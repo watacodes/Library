@@ -2,9 +2,11 @@
 
 let myPersonalLibrary = [];
 
+
 // Adding books manually to see whether it's displayed correctly.
 
-// const newBook1 = new addMyBookToLibrary("Harry Potter", "J.K. Rowlings", "Fiction", "5");
+const container = document.getElementById('container');
+// const newBook1 = new addMyBookToLibrary("Harry Potter and the Philosopher's Stone", "J.K. Rowlings", "Fiction", "5");
 // const newBook2 = new addMyBookToLibrary("Atomic Habits", "James Clear", "Non-Fiction", "5");
 // const newBook3 = new addMyBookToLibrary("Grit", "Angela Duckworth", "Non-Fiction", "5");
 // const newBook4 = new addMyBookToLibrary("The Alchemist", "Paulo Coelho", "Fiction", "5");
@@ -13,7 +15,7 @@ let myPersonalLibrary = [];
 // const newBook7 = new addMyBookToLibrary("Man's Search for Meaning", "Viktor Frankl", "Non-Fiction", "5");
 // const newBook8 = new addMyBookToLibrary("Moonwalking with Einstein", "Joshua Foer", "Non-Fiction", "5");
 
-const container = document.getElementById('container');
+
 
 // Making a constructor 
 
@@ -24,17 +26,35 @@ function Book(title, author, genre, rating) {
     this.rating = rating;
 };
 
+// New fucntion that checks whether myPersonalLibrary matches the localStorage.
+// If not, then updates the original array with localStorage data.
+
+
+
+function getLocalStorage() {
+    let localBooks = localStorage.getItem("Books");
+    if (localBooks == null) {
+        myPersonalLibrary = [];  
+    } else {
+        myPersonalLibrary = JSON.parse(localBooks);
+    }
+    displayBooks();
+}
+
+getLocalStorage()
+
 function addMyBookToLibrary(title, author, genre, rating) {
     const book = new Book(title, author, genre, rating);
     myPersonalLibrary.push(book);
     localStorage.setItem('Books', JSON.stringify(myPersonalLibrary));
-    displayBooks();
     document.querySelector('form').reset();
 };
 
+
+
 const submitButton = document.getElementById('submit-btn');
 
-submitButton.addEventListener('click', e => {
+const submitData = e => {
     e.preventDefault();
     const userTitle = document.getElementById('title').value;
     const userAuthor = document.getElementById('author').value;
@@ -44,9 +64,15 @@ submitButton.addEventListener('click', e => {
     // Block if title/author/rating info is blank.
 
     if (!(userTitle == "" || userAuthor == "" || userRating == "")) {
-        new addMyBookToLibrary(userTitle, userAuthor, userGenre, userRating);
+        addMyBookToLibrary(userTitle, userAuthor, userGenre, userRating);
     }
-});
+    displayBooks();
+};
+
+
+submitButton.addEventListener('click', submitData);
+
+
 
 
 
@@ -60,7 +86,7 @@ function displayBooks() {
 
     for (let i = 0; i < existingCard.length; i++) {
         existingCard[i].remove();
-    }
+    }       
 
     myPersonalLibrary.forEach((book) => {
         
@@ -69,28 +95,15 @@ function displayBooks() {
 
         const content = `
             <div class="card-body">
-                <p>Title: <br> ${book.title}</p>
-                <p>Author: <br> ${book.author}</p>
-                <p>Genre: <br> ${book.genre}</p>
-                <p>Rating: <br> ${book.rating}</p>
+                <p><div class="card-header">Title: </div>${book.title}</p>
+                <p><div class="card-header">Author: </div>${book.author}</p>
+                <p><div class="card-header">Genre: </div>${book.genre}</p>
+                <p><div class="card-header">Rating: </div>${book.rating}</p>
             </div>
         `
 
         container.innerHTML += content;
     });
 };
-
-// New fucntion that checks whether myPersonalLibrary matches the localStorage.
-// If not, then updates the original array with localStorage data.
-
-function getLocalStorage() {
-    if (myPersonalLibrary != localStorage.getItem('Books')) {
-        myPersonalLibrary = JSON.parse(localStorage.getItem('Books'));
-        displayBooks()
-    }
-}
-
-getLocalStorage()
-
 
 
