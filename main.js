@@ -6,6 +6,7 @@ let myPersonalLibrary = [];
 // Adding books manually to see whether it's displayed correctly.
 
 const container = document.getElementById('container');
+const statusButton = document.getElementById('status');
 // const newBook1 = new addMyBookToLibrary("Harry Potter and the Philosopher's Stone", "J.K. Rowlings", "Fiction", "5");
 // const newBook2 = new addMyBookToLibrary("Atomic Habits", "James Clear", "Non-Fiction", "5");
 // const newBook3 = new addMyBookToLibrary("Grit", "Angela Duckworth", "Non-Fiction", "5");
@@ -19,11 +20,12 @@ const container = document.getElementById('container');
 
 // Making a constructor 
 
-function Book(title, author, genre, rating) {
+function Book(title, author, genre, rating, status) {
     this.title = title;
     this.author = author;
     this.genre = genre;
     this.rating = rating;
+    this.status = false;
 };
 
 // New fucntion that checks whether myPersonalLibrary matches the localStorage.
@@ -43,8 +45,16 @@ function getLocalStorage() {
 
 getLocalStorage()
 
-function addMyBookToLibrary(title, author, genre, rating) {
-    const book = new Book(title, author, genre, rating);
+function addMyBookToLibrary(title, author, genre, rating, status) {
+    const book = new Book(title, author, genre, rating, status);
+    
+    // Confirm whether the status button is checked, if so, status will be true.
+
+    if (statusButton.checked == true) {
+        book.status = "Finished Reading!";
+    } else {
+        book.status = "Still Reading.";
+    }
     myPersonalLibrary.push(book);
     localStorage.setItem('Books', JSON.stringify(myPersonalLibrary));
     document.querySelector('form').reset();
@@ -55,16 +65,17 @@ function addMyBookToLibrary(title, author, genre, rating) {
 const submitButton = document.getElementById('submit-btn');
 
 const submitData = e => {
-    e.preventDefault();
+    // e.preventDefault();
     const userTitle = document.getElementById('title').value;
     const userAuthor = document.getElementById('author').value;
     const userGenre = document.getElementById('genre').value;
     const userRating = document.getElementById('rating').value;
+    const userStatus = document.getElementById('status').value;
 
     // Block if title/author/rating info is blank.
 
     if (!(userTitle == "" || userAuthor == "" || userRating == "")) {
-        addMyBookToLibrary(userTitle, userAuthor, userGenre, userRating);
+        addMyBookToLibrary(userTitle, userAuthor, userGenre, userRating, userStatus);
     }
     displayBooks();
 };
@@ -99,6 +110,7 @@ function displayBooks() {
                 <p><div class="card-header">Author: </div>${book.author}</p>
                 <p><div class="card-header">Genre: </div>${book.genre}</p>
                 <p><div class="card-header">Rating: </div>${book.rating}</p>
+                <p><div class="card-header">Status: </div>${book.status}</p>
             </div>
         `
 
