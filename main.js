@@ -64,6 +64,7 @@ function addMyBookToLibrary(title, author, genre, rating, status) {
 
 const submitButton = document.getElementById('submit-btn');
 
+
 const submitData = e => {
     // e.preventDefault();
     const userTitle = document.getElementById('title').value;
@@ -80,8 +81,20 @@ const submitData = e => {
     displayBooks();
 };
 
+const deleteButtons = document.querySelectorAll('.delete-btn');
+
+function deleteMe() {
+    this.parentElement.remove();
+}
+
+deleteButtons.forEach(btn => {
+    btn.addEventListener('click', deleteMe);
+})
 
 submitButton.addEventListener('click', submitData);
+
+
+
 
 
 
@@ -111,6 +124,8 @@ function displayBooks() {
                 <p><div class="card-header">Genre: </div>${book.genre}</p>
                 <p><div class="card-header">Rating: </div>${book.rating}</p>
                 <p><div class="card-header">Status: </div>${book.status}</p>
+
+                <input type="button" id="delete" class="delete-btn" value="Delete Book?">
             </div>
         `
 
