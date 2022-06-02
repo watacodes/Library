@@ -31,15 +31,23 @@ function Book(title, author, genre, rating, status) {
 // New fucntion that checks whether myPersonalLibrary matches the localStorage.
 // If not, then updates the original array with localStorage data.
 
+let localBooks = localStorage.getItem("Books");
+let newLocal = JSON.parse(localBooks);
 
 
 function getLocalStorage() {
-    let localBooks = localStorage.getItem("Books");
-    if (localBooks == null) {
+    
+
+    if (localBooks && myPersonalLibrary == null) {
         myPersonalLibrary = [];  
     } else {
-        myPersonalLibrary = JSON.parse(localBooks);
+        for(let i in newLocal) {
+            myPersonalLibrary.push(newLocal[i]);
+        }
     }
+        
+    console.log(`This is myPerLib: ${JSON.stringify(myPersonalLibrary)}`);
+    console.log(`This is the localStorage: ${JSON.stringify(newLocal)}`);
     displayBooks();
 }
 
@@ -78,24 +86,39 @@ const submitData = e => {
     if (!(userTitle == "" || userAuthor == "" || userRating == "")) {
         addMyBookToLibrary(userTitle, userAuthor, userGenre, userRating, userStatus);
     }
+    console.log(`This is myPerLib: ${JSON.stringify(myPersonalLibrary)}`);
+    console.log(`This is the localStorage: ${JSON.stringify(newLocal)}`);
     displayBooks();
 };
 
 const deleteButtons = document.querySelectorAll('.delete-btn');
 
-function deleteMe() {
-    this.parentElement.remove();
-}
+submitButton.addEventListener('click', submitData);
+
 
 deleteButtons.forEach(btn => {
     btn.addEventListener('click', deleteMe);
 })
 
-submitButton.addEventListener('click', submitData);
+function deleteMe() {
+    localStorage.setItem('Books', JSON.stringify(myPersonalLibrary));
+    console.log(`This is myPerLib: ${JSON.stringify(myPersonalLibrary)}`);
+    console.log(`This is the localStorage: ${JSON.stringify(newLocal)}`);
+    console.log(`this is this.parentElement: ${this.parentElement.outerHTML}`);
+    this.parentElement.remove();
+    console.log(`This is myPerLib: ${JSON.stringify(myPersonalLibrary)}`);
+    console.log(`This is the localStorage: ${JSON.stringify(newLocal)}`);
 
-
-
-
+    // function clearLocalStorage() {
+    //     console.log($(this.parentElement.outerHTML).attr("id") == $(this.input).attr("id"));
+    //     if ($(this.parentElement.outerHTML).attr("id") == $(this.input).attr("id")) {
+    //         localStorage.removeItem()
+    //     }
+    // }
+    
+    // clearLocalStorage();
+    
+}
 
 
 
@@ -116,20 +139,42 @@ function displayBooks() {
         
         const newCard = document.createElement('div');
         newCard.className = 'card-body';
+        newCard.setAttribute('id', myPersonalLibrary.indexOf(book));
+        console.log(newCard);
 
-        const content = `
-            <div class="card-body">
-                <p><div class="card-header">Title: </div>${book.title}</p>
-                <p><div class="card-header">Author: </div>${book.author}</p>
-                <p><div class="card-header">Genre: </div>${book.genre}</p>
-                <p><div class="card-header">Rating: </div>${book.rating}</p>
-                <p><div class="card-header">Status: </div>${book.status}</p>
+        const newCardTitle = document.createElement('p');
+        newCardTitle.className = 'card-header';
+        newCard.appendChild(newCardTitle);
+        newCardTitle.innerText = `Title: ${book.title}`;
 
-                <input type="button" id="delete" class="delete-btn" value="Delete Book?">
-            </div>
-        `
+        const newCardAuthor = document.createElement('p');
+        newCardAuthor.className = 'card-header';
+        newCard.appendChild(newCardAuthor);
+        newCardAuthor.innerText = `Author: ${book.author}`;
 
-        container.innerHTML += content;
+        const newCardGenre = document.createElement('p');
+        newCardGenre.className = 'card-header';
+        newCard.appendChild(newCardGenre);
+        newCardGenre.innerText = `Genre: ${book.genre}`;
+        
+        const newCardRating = document.createElement('p');
+        newCardRating.className = 'card-header';
+        newCard.appendChild(newCardRating)
+        newCardRating.innerText = `Rating: ${book.rating}`;
+        
+        const newCardStatus = document.createElement('p');
+        newCardStatus.className = 'card-header';
+        newCard.appendChild(newCardStatus)
+        newCardStatus.innerText = `Status: ${book.status}`;
+
+        const newRemoveBtn = document.createElement('input');
+        newRemoveBtn.setAttribute('value', "Delete Book?");
+        newRemoveBtn.className = 'delete-btn';
+        newRemoveBtn.setAttribute('id', myPersonalLibrary.indexOf(book));
+        newCard.appendChild(newRemoveBtn);
+
+        container.appendChild(newCard);
+       
     });
 };
 
