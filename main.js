@@ -2,21 +2,8 @@
 
 let myPersonalLibrary = [];
 
-
-// Adding books manually to see whether it's displayed correctly.
-
 const container = document.getElementById('container');
 const statusButton = document.getElementById('status');
-// const newBook1 = new addMyBookToLibrary("Harry Potter and the Philosopher's Stone", "J.K. Rowlings", "Fiction", "5");
-// const newBook2 = new addMyBookToLibrary("Atomic Habits", "James Clear", "Non-Fiction", "5");
-// const newBook3 = new addMyBookToLibrary("Grit", "Angela Duckworth", "Non-Fiction", "5");
-// const newBook4 = new addMyBookToLibrary("The Alchemist", "Paulo Coelho", "Fiction", "5");
-// const newBook5 = new addMyBookToLibrary("Homo Deus", "Yuval Noah Harari", "Non-Fiction", "5");
-// const newBook6 = new addMyBookToLibrary("1Q84", "Haruki Murakami", "Fiction", "5");
-// const newBook7 = new addMyBookToLibrary("Man's Search for Meaning", "Viktor Frankl", "Non-Fiction", "5");
-// const newBook8 = new addMyBookToLibrary("Moonwalking with Einstein", "Joshua Foer", "Non-Fiction", "5");
-
-
 
 // Making a constructor 
 
@@ -28,26 +15,26 @@ function Book(title, author, genre, rating, status) {
     this.status = false;
 };
 
-// New fucntion that checks whether myPersonalLibrary matches the localStorage.
-// If not, then updates the original array with localStorage data.
+// getItem picks up the localStorage data, and since it's data from localStorage, the data type is string.
 
-let localBooks = localStorage.getItem("Books");
+// Therefore, I have to convert the string into the object. JSON.parse do the job.
+
+
+let localBooks = localStorage.getItem('Book');
 let newLocal = JSON.parse(localBooks);
 
 
 function getLocalStorage() {
     
-
-    if (localBooks && myPersonalLibrary == null) {
+    if ((typeof(localBooks) && typeof(myPersonalLibrary)) == null) {
         myPersonalLibrary = [];  
     } else {
-        for(let i in newLocal) {
-            myPersonalLibrary.push(newLocal[i]);
-        }
+        for (let i in newLocal) {
+        myPersonalLibrary.push(newLocal[i]);
+        localStorage.setItem('Book', JSON.stringify(myPersonalLibrary));
+    
+        }  
     }
-        
-    console.log(`This is myPerLib: ${JSON.stringify(myPersonalLibrary)}`);
-    console.log(`This is the localStorage: ${JSON.stringify(newLocal)}`);
     displayBooks();
 }
 
@@ -64,16 +51,17 @@ function addMyBookToLibrary(title, author, genre, rating, status) {
         book.status = "Still Reading.";
     }
     myPersonalLibrary.push(book);
-    localStorage.setItem('Books', JSON.stringify(myPersonalLibrary));
     document.querySelector('form').reset();
 };
 
-
+function setLocal() {
+    localBooks = localStorage.setItem('Book', JSON.stringify(myPersonalLibrary));
+}
 
 const submitButton = document.getElementById('submit-btn');
 
 
-const submitData = e => {
+const submitData = () => {
     // e.preventDefault();
     const userTitle = document.getElementById('title').value;
     const userAuthor = document.getElementById('author').value;
@@ -83,45 +71,20 @@ const submitData = e => {
 
     // Block if title/author/rating info is blank.
 
+    // Newly added condition: If rating is out of range, alert pops.
+
     if (!(userTitle == "" || userAuthor == "" || userRating == "")) {
+        if (Number(userRating) > 5 || Number(userRating) < 1) {
+            alert('Rating has to be an integer between 1 to 5!');
+        } else {
         addMyBookToLibrary(userTitle, userAuthor, userGenre, userRating, userStatus);
-    }
-    console.log(`This is myPerLib: ${JSON.stringify(myPersonalLibrary)}`);
-    console.log(`This is the localStorage: ${JSON.stringify(newLocal)}`);
-    displayBooks();
+        setLocal();
+        displayBooks();
+        }
+    };
 };
 
-const deleteButtons = document.querySelectorAll('.delete-btn');
-
 submitButton.addEventListener('click', submitData);
-
-
-deleteButtons.forEach(btn => {
-    btn.addEventListener('click', deleteMe);
-})
-
-function deleteMe() {
-    localStorage.setItem('Books', JSON.stringify(myPersonalLibrary));
-    console.log(`This is myPerLib: ${JSON.stringify(myPersonalLibrary)}`);
-    console.log(`This is the localStorage: ${JSON.stringify(newLocal)}`);
-    console.log(`this is this.parentElement: ${this.parentElement.outerHTML}`);
-    this.parentElement.remove();
-    console.log(`This is myPerLib: ${JSON.stringify(myPersonalLibrary)}`);
-    console.log(`This is the localStorage: ${JSON.stringify(newLocal)}`);
-
-    // function clearLocalStorage() {
-    //     console.log($(this.parentElement.outerHTML).attr("id") == $(this.input).attr("id"));
-    //     if ($(this.parentElement.outerHTML).attr("id") == $(this.input).attr("id")) {
-    //         localStorage.removeItem()
-    //     }
-    // }
-    
-    // clearLocalStorage();
-    
-}
-
-
-
 
 // Making a function to display books in the webpage, loop through the array,
 // get the book info, make div elements to store them, append those divs to the parent div #container
@@ -139,8 +102,7 @@ function displayBooks() {
         
         const newCard = document.createElement('div');
         newCard.className = 'card-body';
-        newCard.setAttribute('id', myPersonalLibrary.indexOf(book));
-        console.log(newCard);
+        newCard.setAttribute('data-id', myPersonalLibrary.indexOf(book));
 
         const newCardTitle = document.createElement('p');
         newCardTitle.className = 'card-header';
@@ -170,12 +132,34 @@ function displayBooks() {
         const newRemoveBtn = document.createElement('input');
         newRemoveBtn.setAttribute('value', "Delete Book?");
         newRemoveBtn.className = 'delete-btn';
-        newRemoveBtn.setAttribute('id', myPersonalLibrary.indexOf(book));
+        newRemoveBtn.setAttribute('data-id', myPersonalLibrary.indexOf(book));
         newCard.appendChild(newRemoveBtn);
 
         container.appendChild(newCard);
-       
+
+        const deleteButtons = document.querySelectorAll('input[data-id]');
+
+        deleteButtons.forEach(btn => btn.addEventListener('click', deleteMe));       
     });
 };
 
 
+function deleteMe() {
+    // console.log(`This is myPerLib: ${myPersonalLibrary}`);
+    // console.log(`This is the localStorage: ${newLocal}`);
+    // console.log(`this is this.parentElement: ${this.parentElement.outerHTML}`);
+
+    // Set index to be the id of the button.
+
+    let idx = Number(this.dataset.id);
+
+    console.log('1st new local', newLocal[idx]);
+    console.log('1st myLib', myPersonalLibrary[idx]);
+    
+    this.parentElement.remove();
+
+    newLocal.splice(idx, 1);
+    myPersonalLibrary.splice(idx, 1);
+
+    localStorage.setItem('Book', JSON.stringify(myPersonalLibrary));
+}
