@@ -48,6 +48,10 @@ h1,
 
 }
 
+.form-fieldset {
+    border-radius: 12px;
+}
+
 .book-title {
     grid-column: 1 / 2;
 }
@@ -61,10 +65,16 @@ h1,
     height: 30px;
     font-size: 16px;
     font-weight: 500;
-    border-radius: 3px;
-    background-color: rgba(24, 58, 29, .6);
-    border: none;
+    background: rgba(24, 58, 29, .6);
     color: rgb(223, 231, 223);
+    transition: background-color 0.5s;
+    cursor: pointer;
+    border-radius: 3px;
+    border: none;
+}
+
+.book-submit-button:hover {
+    background: rgba(182, 75, 25, 0.8);
 }
 
 
@@ -127,8 +137,13 @@ input {
     font-size: 16px;
     font-weight: 600;
     background-color: rgba(24, 58, 29, .6);
+    transition: background-color .5s;
     border-radius: 4px;
     border: none;
     padding: 8px;
+    cursor: pointer;
 }
 
+.delete-btn:hover {
+    background: rgba(182, 75, 25, 0.8);
+}
