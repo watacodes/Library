@@ -8,52 +8,55 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <title>Your Library</title>
+    <title>Your Book Repository</title>
     <script src="main.js" defer></script>
 </head>
 <body>
-    
-    <h1 class="title">Your Library</h1>
-    <p class="description">This website is for users who want to add their favorite books!</p>
-
-    <div class="form-container">
-        <p class="form-description">Do you want to add your favorite book?</p>
-
-        <form class="form-for-adding-books" method="GET">
-            <fieldset class="form-fieldset">
-                <legend class="add-your-book">Add Your Book Here!</legend>
-                    <div class="book book-title">
-                        <label for="title">Book Title*: </label><br> 
-                        <input type="text" name="title" id="title" class="user-book-title" required>
-                    </div>
-
-                    <div class="book book-author">
-                        <label for="author">Author*: </label><br> 
-                        <input type="text" name="author" id="author" class="user-book-author" required>
-                    </div>
-
-                    <div class="book book-genre">
-                        <label for="genre">Genre: </label><br> 
-                        <input type="text" name="genre" id="genre" class="user-book-genre" placeholder="Fiction, Classics">
-                    </div>
-
-                    <div class="book book-rating">
-                        <label for="rating">Rating(1-5)*: </label><br> 
-                        <input type="number" name="rating" max="5" min="1" id="rating" class="user-book-rating" placeholder="1-5">
-                    </div>
-
-                    <div class="book book-status">
-                        <label for="status">Have you finished reading this book?: </label>
-                        <input type="checkbox" name="status" id="status" class="user-book-status">
-                    </div>
-
-                <input class="book-submit-button" type="button" id="submit-btn" value="Submit"></button>   
-            </fieldset>
-        </form>
-    </div>
-    <div id="container">
+    <div class="app-container">
         
-    </div>
+        <div class="title-container">
+            <h1 class="title">Your Book Repository</h1>
+            <p class="description">This is your simple personal bookshelf app.</p>
+        </div>
 
+        <div class="form-container">
+
+            <form class="form-for-adding-books" method="GET">
+                <fieldset class="form-fieldset">
+                    <legend class="add-your-book">Add Your Book Here!</legend>
+                        <div class="book book-title">
+                            <label for="title">Book Title*: </label><br> 
+                            <input type="text" name="title" id="title" class="user-book-title" required>
+                        </div>
+
+                        <div class="book book-author">
+                            <label for="author">Author*: </label><br> 
+                            <input type="text" name="author" id="author" class="user-book-author" required>
+                        </div>
+
+                        <div class="book book-genre">
+                            <label for="genre">Genre: </label><br> 
+                            <input type="text" name="genre" id="genre" class="user-book-genre" placeholder="Fiction, Classics">
+                        </div>
+
+                        <div class="book book-rating">
+                            <label for="rating">Rating(1-5)*: </label><br> 
+                            <input type="number" name="rating" max="5" min="1" id="rating" class="user-book-rating" placeholder="1-5">
+                        </div>
+
+                        <div class="book book-status">
+                            <label for="status">Have you finished reading this book?: </label>
+                            <input type="checkbox" name="status" id="status" class="user-book-status">
+                        </div>
+
+                    <input class="book-submit-button" type="button" id="submit-btn" value="Submit"></button>   
+                </fieldset>
+            </form>
+        </div>
+
+        <div id="container">
+            
+        </div>
+    </div>
 </body>
 </html>
