@@ -17,7 +17,7 @@ function Book(title, author, genre, rating, status) {
 
 // getItem picks up the localStorage data, and since it's data from localStorage, the data type is string.
 
-// Therefore, I have to convert the string into the object. JSON.parse do the job.
+// Therefore, I have to convert the string into the object. JSON.parse will help me.
 
 
 let localBooks = localStorage.getItem('Book');
@@ -32,7 +32,6 @@ function getLocalStorage() {
         for (let i in newLocal) {
         myPersonalLibrary.push(newLocal[i]);
         localStorage.setItem('Book', JSON.stringify(myPersonalLibrary));
-    
         }  
     }
     displayBooks();
@@ -131,10 +130,10 @@ function displayBooks() {
 
         const newRemoveBtn = document.createElement('input');
         newRemoveBtn.setAttribute('value', "Delete Book?");
-        newRemoveBtn.className = 'delete-btn';
         newRemoveBtn.setAttribute('data-id', myPersonalLibrary.indexOf(book));
-        newCard.appendChild(newRemoveBtn);
+        newRemoveBtn.className = 'delete-btn';
 
+        newCard.appendChild(newRemoveBtn);
         container.appendChild(newCard);
 
         const deleteButtons = document.querySelectorAll('input[data-id]');
@@ -145,9 +144,6 @@ function displayBooks() {
 
 
 function deleteMe() {
-    // console.log(`This is myPerLib: ${myPersonalLibrary}`);
-    // console.log(`This is the localStorage: ${newLocal}`);
-    // console.log(`this is this.parentElement: ${this.parentElement.outerHTML}`);
 
     // Set index to be the id of the button.
 
