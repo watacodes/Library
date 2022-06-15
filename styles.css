@@ -92,33 +92,43 @@ h1,
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-around;
 }
 
-.card-body {
+table {
+    width: 75vw;
+    height: 85vh;
+    border: 2px solid black;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+#header-row {
+    width: 100%;
+}
+
+tr {
+    display: table-row;
+}
+
+tr,
+th {
+    text-align: center;
+    border-top: 1px solid rgba(128, 128, 128, .8);
+}
+
+.table-header {
+    height: 2.5rem;
+}
+
+#table-body {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
-    height: 300px;
-    width: 400px;
-    margin: 20px;
-    padding: 10px;
-    font-size: 20px;
-    border: 1px solid #2b6777;
-    border-radius: 4px;
-    background-color: #c8d8e4;
 }
 
-.card-body p {
-    line-height: 24px;
+.book-data {
+    min-width: 100%;
 }
-
-.card-header {
-    font-weight: 600;    
-}
-
 
 /* Temporarily adding styles */
 
