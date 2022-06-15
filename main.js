@@ -55,7 +55,7 @@ function addMyBookToLibrary(title, author, genre, rating, status) {
 
 function setLocal() {
     localBooks = localStorage.setItem('Book', JSON.stringify(myPersonalLibrary));
-}
+};
 
 const submitButton = document.getElementById('submit-btn');
 
@@ -79,7 +79,7 @@ const submitData = () => {
         addMyBookToLibrary(userTitle, userAuthor, userGenre, userRating, userStatus);
         setLocal();
         displayBooks();
-        }
+        };
     };
 };
 
@@ -120,12 +120,12 @@ function displayBooks() {
         
         const newCardRating = document.createElement('p');
         newCardRating.className = 'card-header';
-        newCard.appendChild(newCardRating)
+        newCard.appendChild(newCardRating);
         newCardRating.innerText = `Rating: ${book.rating}`;
         
         const newCardStatus = document.createElement('p');
         newCardStatus.className = 'card-header';
-        newCard.appendChild(newCardStatus)
+        newCard.appendChild(newCardStatus);
         newCardStatus.innerText = `Status: ${book.status}`;
 
         const newRemoveBtn = document.createElement('input');
@@ -158,4 +158,4 @@ function deleteMe() {
     myPersonalLibrary.splice(idx, 1);
 
     localStorage.setItem('Book', JSON.stringify(myPersonalLibrary));
-}
+};
