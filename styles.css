@@ -114,7 +114,7 @@ tr {
 tr,
 th {
     text-align: center;
-    border-top: 1px solid rgba(128, 128, 128, .8);
+    border-top: 1.5px solid rgba(128, 128, 128, .8);
 }
 
 .table-header {
