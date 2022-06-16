@@ -92,6 +92,80 @@ h1,
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    height: 300px;
+    width: 400px;
+    margin: 20px;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid #2b6777;
+    border-radius: 4px;
+    background-color: #c8d8e4;
+}
+
+.card-body p {
+    line-height: 24px;
+}
+
+.card-header {
+    font-weight: 600;    
+}
+
+
+/* Temporarily adding styles */
+
+fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 6px;
+}
+
+.user-book-status {
+    width: 16px;
+}
+
+.book,
+.book-submit-button {
+    margin: 16px;
+}
+
+input {
+    width: 250px;
+}
+
+.delete-btn {
+    display: flex;
+    align-items: center;
+    width: 100px;
+    font-size: 16px;
+    font-weight: 500;
+    background-color: rgba(24, 58, 29, .6);
+    transition: background-color .2s;
+    border-radius: 4px;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    margin-left: 125px;
+    color: rgb(223, 231, 223, .8);
+}
+
+.delete-btn:hover {
+    background: rgba(182, 75, 25, 0.8);
+}
+
+#container {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    display: flex;
     justify-content: space-around;
 }
 
@@ -101,6 +175,7 @@ table {
     border: 2px solid black;
     border-collapse: collapse;
     border-spacing: 0;
+    display: none !important;
 }
 
 #header-row {
@@ -114,7 +189,7 @@ tr {
 tr,
 th {
     text-align: center;
-    border-top: 1.5px solid rgba(128, 128, 128, .8);
+    border-top: 1px solid rgba(128, 128, 128, .8);
 }
 
 .table-header {
@@ -142,6 +217,30 @@ fieldset {
 .user-book-status {
     width: 16px;
 }
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    height: 300px;
+    width: 400px;
+    margin: 20px;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid #2b6777;
+    border-radius: 4px;
+    background-color: #c8d8e4;
+}
+
+.card-body p {
+    line-height: 24px;
+}
+
+.card-header {
+    font-weight: 600;    
+}
+
 
 .book,
 .book-submit-button {

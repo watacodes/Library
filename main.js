@@ -91,7 +91,7 @@ submitButton.addEventListener('click', submitData);
 function displayBooks() {
     // delete the existing cards
 
-    const existingCard = document.querySelectorAll('.book-data');
+    const existingCard = document.querySelectorAll('.card-body');
 
     for (let i = 0; i < existingCard.length; i++) {
         existingCard[i].remove();
@@ -133,46 +133,46 @@ function displayBooks() {
         newBookStatus.innerText = book.status;
 
 
-        // const newCard = document.createElement('div');
-        // newCard.className = 'card-body';
-        // newCard.setAttribute('data-id', myPersonalLibrary.indexOf(book));
+        const newCard = document.createElement('div');
+        newCard.className = 'card-body';
+        newCard.setAttribute('data-id', myPersonalLibrary.indexOf(book));
 
-        // const newCardTitle = document.createElement('p');
-        // newCardTitle.className = 'card-header';
-        // newCard.appendChild(newCardTitle);
-        // newCardTitle.innerText = `Title: ${book.title}`;
+        const newCardTitle = document.createElement('p');
+        newCardTitle.className = 'card-header';
+        newCard.appendChild(newCardTitle);
+        newCardTitle.innerText = `Title: ${book.title}`;
 
-        // const newCardAuthor = document.createElement('p');
-        // newCardAuthor.className = 'card-header';
-        // newCard.appendChild(newCardAuthor);
-        // newCardAuthor.innerText = `Author: ${book.author}`;
+        const newCardAuthor = document.createElement('p');
+        newCardAuthor.className = 'card-header';
+        newCard.appendChild(newCardAuthor);
+        newCardAuthor.innerText = `Author: ${book.author}`;
 
-        // const newCardGenre = document.createElement('p');
-        // newCardGenre.className = 'card-header';
-        // newCard.appendChild(newCardGenre);
-        // newCardGenre.innerText = `Genre: ${book.genre}`;
+        const newCardGenre = document.createElement('p');
+        newCardGenre.className = 'card-header';
+        newCard.appendChild(newCardGenre);
+        newCardGenre.innerText = `Genre: ${book.genre}`;
         
-        // const newCardRating = document.createElement('p');
-        // newCardRating.className = 'card-header';
-        // newCard.appendChild(newCardRating);
-        // newCardRating.innerText = `Rating: ${book.rating}`;
+        const newCardRating = document.createElement('p');
+        newCardRating.className = 'card-header';
+        newCard.appendChild(newCardRating);
+        newCardRating.innerText = `Rating: ${book.rating}`;
         
-        // const newCardStatus = document.createElement('p');
-        // newCardStatus.className = 'card-header';
-        // newCard.appendChild(newCardStatus);
-        // newCardStatus.innerText = `Status: ${book.status}`;
+        const newCardStatus = document.createElement('p');
+        newCardStatus.className = 'card-header';
+        newCard.appendChild(newCardStatus);
+        newCardStatus.innerText = `Status: ${book.status}`;
 
-        // const newRemoveBtn = document.createElement('input');
-        // newRemoveBtn.setAttribute('value', "Delete Book?");
-        // newRemoveBtn.setAttribute('data-id', myPersonalLibrary.indexOf(book));
-        // newRemoveBtn.className = 'delete-btn';
+        const newRemoveBtn = document.createElement('input');
+        newRemoveBtn.setAttribute('value', "Delete Book?");
+        newRemoveBtn.setAttribute('data-id', myPersonalLibrary.indexOf(book));
+        newRemoveBtn.className = 'delete-btn';
 
-        // newCard.appendChild(newRemoveBtn);
-        // container.appendChild(newCard);
+        newCard.appendChild(newRemoveBtn);
+        container.appendChild(newCard);
 
-        // const deleteButtons = document.querySelectorAll('input[data-id]');
+        const deleteButtons = document.querySelectorAll('input[data-id]');
 
-        // deleteButtons.forEach(btn => btn.addEventListener('click', deleteMe));       
+        deleteButtons.forEach(btn => btn.addEventListener('click', deleteMe));       
     });
 };
 
